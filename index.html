@@ -30,7 +30,7 @@
   <h1>Arphen's Website</h1>
   
   <div class="content">
-    <h3>Recent Thoughts</h3>
+    <h3>Recent Thoughts</h3>  <h6>*we don't talk about the konata(it's draggable for no reason)</h6>
     <ul>
       <li>
         <details>
@@ -60,5 +60,63 @@
     <img class="fun-image" src="https://placekitten.com/200/300" alt="Cute Kitten">
     <p>Enjoy your visit!</p>
   </div>
+  <style>
+    .draggable {
+        position: absolute;
+        cursor: move;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Replace this URL with the URL of the image you want to use -->
+<img src="https://lh3.googleusercontent.com/pw/AP1GczNRHE7RDULi3Vhw9mvq-yVhVyVuP90_0aXQyIottByxS_BHVT547wg0bGSJ3f8zob2Zx4ROJZK7-Nr9zfDoCYxRuPM8aAcWQVAUWZ1O9snA0-dq0w=w2400?source=screenshot.guru"
+     alt="Draggable Image" id="draggableImage" class="draggable"
+     style="width: 100px; height: 100px;">
+
+<script>
+    // Get the draggable element
+    var draggableElement = document.getElementById('draggableImage');
+
+    // Initialize variables to store touch positions
+    var touchOffsetX = 0, touchOffsetY = 0;
+
+    // Function to handle touch start event
+    function touchStart(e) {
+        var touch = e.targetTouches[0];
+        // Get the initial touch position relative to the image's top-left corner
+        touchOffsetX = touch.pageX - draggableElement.getBoundingClientRect().left;
+        touchOffsetY = touch.pageY - draggableElement.getBoundingClientRect().top;
+    }
+
+    // Function to handle touch move event
+    function touchMove(e) {
+        e.preventDefault();
+        var touch = e.targetTouches[0];
+        // Calculate the new touch position
+        var newX = touch.pageX - touchOffsetX;
+        var newY = touch.pageY - touchOffsetY;
+        // Set the element's new position
+        draggableElement.style.left = newX + 'px';
+        draggableElement.style.top = newY + 'px';
+    }
+
+    // Attach touch event listeners
+    draggableElement.addEventListener('touchstart', touchStart, false);
+    draggableElement.addEventListener('touchmove', touchMove, false);
+
+    // Function to handle touch end event (optional)
+    draggableElement.addEventListener('touchend', function() {
+        // Clear touch offsets or perform any necessary cleanup
+        touchOffsetX = 0;
+        touchOffsetY = 0;
+    }, false);
+</script>
+
+</body>
+</html>
+
 </body>
 </html>
